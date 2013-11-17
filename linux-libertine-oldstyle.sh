@@ -9,9 +9,10 @@ ttx *otf
 mkdir -p bak
 mv *otf bak
 
-#creation a partir des *ttx
+#correction des ttx et generation des .otf
 for i in *.ttx;
   do 
+sed -i ttx 's#<map code="\(0x3[0-9]\)" name="\([a-z]*\)"/>#<map code="\1" name="\2.oldstyle"/>#' *ttx;
 ttx $i;
 mv ${i%%.ttx}.ttf ${i%%.ttx}.otf;
 done
